@@ -1,9 +1,10 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import Navbar from "./Navbar";
+import { colors } from "../styles/common";
 
 export default ({ children }) => (
-  <View style={styles.nav}>
+  <View style={[styles.layout]}>
     <Navbar />
     {children}
   </View>
@@ -11,9 +12,7 @@ export default ({ children }) => (
 
 const styles = StyleSheet.create({
   layout: {
-    marginTop: 150,
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
+    backgroundColor: colors.black,
+    flex: 1
   }
 });

@@ -13,8 +13,10 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     // flex: 1,
     flexDirection: "row",
-    justifyContent: "center",
-    minHeight: 94,
+    justifyContent: "flex-start",
+    marginBottom: 10,
+    minHeight: 86,
+    paddingHorizontal: 16,
     paddingTop: 24
   },
   label: {

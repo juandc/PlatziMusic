@@ -7,7 +7,9 @@ export default class App extends React.Component {
   render() {
     return (
       <Layout>
-        <Text>From Layout!</Text>
+        <Card />
+        <Card />
+        <Card />
         <Card />
       </Layout>
     );
