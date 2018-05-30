@@ -8,25 +8,38 @@ export default ({
   likes = defaults.likes,
   comments = defaults.comments
 }) => (
-  <View style={styles.container}>
-    <Image style={styles.image} source={{ uri: image }} />
-    <View style={styles.description}>
-      <Text style={[styles.text, styles.title]}>{name}</Text>
-      <View style={styles.actions}>
-        <View style={styles.action}>
+  <CardContainer style={styles.container}>
+    <CardImage source={{ uri: image }} />
+    <CardDescription>
+      <CardTitle>{name}</CardTitle>
+      <CardActions>
+        <CardAction>
           <Text style={{ fontSize: 22 }}>♥</Text>
-          <Text style={[styles.text, styles.count]}>{likes}</Text>
-        </View>
-        <View style={styles.action}>
+          <CardActionCount count={likes} />
+        </CardAction>
+        <CardAction>
           <Text style={{ fontSize: 22 }}>💬</Text>
-          <Text style={[styles.text, styles.count]}>{comments}</Text>
-        </View>
-      </View>
-      <View style={{ position: "absolute", right: 8, top: 18 }}>
-        <Text style={{ fontSize: 16, color: "#FFF" }}>➡</Text>
-      </View>
-    </View>
-  </View>
+          <CardActionCount count={comments} />
+        </CardAction>
+      </CardActions>
+      <CardPointer>
+        <Text style={{ fontSize: 16 }}>👉</Text>
+      </CardPointer>
+    </CardDescription>
+  </CardContainer>
+);
+
+const CardContainer = props => <View style={styles.container} {...props} />;
+const CardDescription = props => <View style={styles.description} {...props} />;
+const CardActions = props => <View style={styles.actions} {...props} />;
+const CardAction = props => <View style={styles.action} {...props} />;
+const CardPointer = props => <View style={styles.pointer} {...props} />;
+const CardImage = props => <Image style={styles.image} {...props} />;
+const CardTitle = props => (
+  <Text style={[styles.text, styles.title]} {...props} />
+);
+const CardActionCount = ({ count, ...props }) => (
+  <Text style={[styles.text, styles.count]} {...props} children={count} />
 );
 
 const styles = StyleSheet.create({
@@ -38,8 +51,8 @@ const styles = StyleSheet.create({
   description: {
     borderBottomColor: colors.white + 25, // 25 is the opacity
     borderBottomWidth: 1,
-    marginHorizontal: 12,
     paddingBottom: 12,
+    marginLeft: 12,
     paddingHorizontal: 8,
     flex: 1
   },
@@ -49,6 +62,11 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     marginRight: 16
+  },
+  pointer: {
+    position: "absolute",
+    right: 8,
+    top: 24
   },
   // elements
   image: {
@@ -67,5 +85,5 @@ const defaults = {
   image:
     "https://static.platzi.com/media/files/bowie_a927fdf3-b321-4a5c-99ca-239cc86c57bc.png",
   likes: 200,
-  comments: 6
+  comments: 4
 };
