@@ -2,16 +2,14 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 
 export default () => (
-  <View style={styles.nav}>
-    <Text style={styles.label}>Platzi Music</Text>
+  <View style={styles.navContainer}>
+    <Text style={styles.navLabel}>Platzi Music</Text>
   </View>
 );
 
 const styles = StyleSheet.create({
-  nav: {
+  navContainer: {
     backgroundColor: "#cc2222",
-    // alignItems: "center",
-    // flex: 1,
     flexDirection: "row",
     justifyContent: "flex-start",
     marginBottom: 10,
@@ -19,7 +17,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 24
   },
-  label: {
+  navLabel: {
     alignSelf: "center",
     color: "#f5f5f5",
     fontSize: 22
