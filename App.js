@@ -1,22 +1,30 @@
 import React from "react";
-import Layout from "./components/Layout";
-import CardList from "./components/Card/CardList";
-import { topArtists } from "./utils/api-client";
+import { createStackNavigator } from "react-navigation";
+import Home from "./views/Home";
+import Albums from "./views/Albums";
 
 export default class App extends React.Component {
-  state = {
-    artists: []
-  };
-
-  componentDidMount() {
-    topArtists().then(artists => this.setState({ artists }));
-  }
-
   render() {
-    return (
-      <Layout>
-        <CardList list={this.state.artists} />
-      </Layout>
-    );
+    return <Router />;
   }
 }
+
+const routes = {
+  Home,
+  Albums
+};
+
+const conf = {
+  headerStyle: {
+    backgroundColor: "#cc2222"
+  },
+  headerTintColor: "#fff",
+  headerTitleStyle: {
+    fontWeight: "normal"
+  }
+};
+
+const Router = createStackNavigator(routes, {
+  initialRouteName: "Home",
+  navigationOptions: conf
+});

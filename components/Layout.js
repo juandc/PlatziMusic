@@ -3,12 +3,7 @@ import { StyleSheet, View, Text } from "react-native";
 import Navbar from "./Navbar";
 import { colors } from "../styles/common";
 
-export default ({ children }) => (
-  <View style={[styles.layout]}>
-    <Navbar />
-    {children}
-  </View>
-);
+export default ({ children }) => <View style={styles.layout}>{children}</View>;
 
 const styles = StyleSheet.create({
   layout: {
