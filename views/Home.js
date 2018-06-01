@@ -8,9 +8,7 @@ export default class Home extends React.Component {
     title: "Platzi Music"
   };
 
-  state = {
-    artists: []
-  };
+  state = { artists: [] };
 
   componentDidMount() {
     topArtists().then(artists => this.setState({ artists }));

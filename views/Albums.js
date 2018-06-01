@@ -1,7 +1,6 @@
 import React from "react";
-import { View, Text } from "react-native";
 import Layout from "../components/Layout";
-import Album from "../components/Album/Album";
+import AlbumList from "../components/Album/AlbumList";
 import { albumsFromArtist } from "../utils/api-client";
 import { colors } from "../styles/common";
 
@@ -9,20 +8,21 @@ export default class Albums extends React.Component {
   static navigationOptions = {
     title: "Albums",
     headerStyle: {
-      backgroundColor: "red"
+      backgroundColor: colors.black
     }
   };
 
-  state = {
-    albums: []
-  };
+  state = { albums: [] };
 
-  // componentDidMount() {
-  //   const { navigation } = this.props;
-  //   albumsFromArtist(navigation.getParam("artist").name).then(albums =>
-  //     this.setState({ albums })
-  //   );
-  // }
+  componentDidMount() {
+    const { navigation } = this.props;
+    const { name } = navigation.getParam("artist");
+
+    albumsFromArtist(name).then(albums => {
+      // this.setState({ albums: [{}, {}, {}, {}, {}, {}, {}] });
+      this.setState({ albums });
+    });
+  }
 
   render() {
     const { navigation } = this.props;
@@ -30,28 +30,7 @@ export default class Albums extends React.Component {
 
     return (
       <Layout>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: "column",
-            paddingVertical: 4,
-            paddingHorizontal: 1
-          }}
-        >
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "center",
-              flexWrap: "wrap"
-            }}
-          >
-            {/* {albums.map(e => <Album key={e.id} />)} */}
-            <Album />
-            <Album />
-            <Album />
-            <Album />
-          </View>
-        </View>
+        <AlbumList list={albums} openDetail={e => console.warn(e)} />
       </Layout>
     );
   }

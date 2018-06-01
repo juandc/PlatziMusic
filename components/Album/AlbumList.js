@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { ListView, TouchableOpacity } from "react-native";
-import Layout from "./Layout";
-import { LayoutLoading } from "./layout-styles";
+import Layout from "../Layout";
+import Album from "./Album";
+import { AlbumLoading, albumsContainer } from "./album-styles";
 
-export default class LayoutList extends Component {
+export default class AlbumList extends Component {
   constructor(props) {
     super(props);
 
@@ -35,17 +36,18 @@ export default class LayoutList extends Component {
     const isLoading =
       !list._dataBlob || !list._dataBlob.s1 || !list._dataBlob.s1.length;
 
-    if (isLoading) return <LayoutLoading />;
+    if (isLoading) return <AlbumLoading />;
 
     return (
       <ListView
         enableEmptySections
         dataSource={list}
-        renderRow={artist => (
-          <TouchableOpacity onPress={() => openDetail(artist)}>
-            <Layout {...artist} />
+        renderRow={album => (
+          <TouchableOpacity onPress={() => openDetail(album)}>
+            <Album {...album} />
           </TouchableOpacity>
         )}
+        contentContainerStyle={albumsContainer}
       />
     );
   }
