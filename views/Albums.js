@@ -19,7 +19,6 @@ export default class Albums extends React.Component {
     const { name } = navigation.getParam("artist");
 
     albumsFromArtist(name).then(albums => {
-      // this.setState({ albums: [{}, {}, {}, {}, {}, {}, {}] });
       this.setState({ albums });
     });
   }

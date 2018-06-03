@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 import CardList from "../components/Card/CardList";
 import { topArtists } from "../utils/api-client";
 
-export default class Home extends React.Component {
+export default class TopArtists extends React.Component {
   static navigationOptions = {
     title: "Platzi Music"
   };

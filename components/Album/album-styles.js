@@ -1,10 +1,23 @@
 import React from "react";
-import { StyleSheet, View, Text, Image, Dimensions } from "react-native";
+import { StyleSheet, View, Text, Image } from "react-native";
 import { colors } from "../../styles/common";
 
 // Components
 export const AlbumCard = props => (
-  <View style={styles.albumCardContainer}>
+  <View
+    style={[
+      styles.albumCardContainer,
+      (() => {
+        const widthLogic = props.orientation === "portrait" ? 0.5 : 0.31;
+        const width = props.width * widthLogic - 2;
+        console.log(props.width, width);
+        return {
+          height: width,
+          width
+        };
+      })()
+    ]}
+  >
     <View style={styles.albumCard} {...props} />
   </View>
 );
@@ -21,9 +34,8 @@ export const AlbumImage = ({ image }) => (
 
 export const AlbumLoading = () => <Text style={[styles.text]}>Loading...</Text>;
 
-// TODO: I NEED TO REMOVE THIS!!!
-const { width } = Dimensions.get("window");
-const albumWidth = width * 0.5 - 2;
+// const { width } = Dimensions.get("window");
+// const albumWidth = width * 0.5 - 2;
 
 // Styles
 export const { albumsContainer, ...styles } = StyleSheet.create({
@@ -35,9 +47,9 @@ export const { albumsContainer, ...styles } = StyleSheet.create({
     width: "100%"
   },
   albumCardContainer: {
-    height: albumWidth,
-    padding: 2,
-    width: albumWidth
+    // height: albumWidth,
+    padding: 2
+    // width: albumWidth
   },
   albumTitleContainer: {
     backgroundColor: colors.red + 50
