@@ -32,7 +32,9 @@ export const AlbumImage = ({ image }) => (
   <Image source={{ uri: image }} style={styles.albumImage} />
 );
 
-export const AlbumLoading = () => <Text style={[styles.text]}>Loading...</Text>;
+export const AlbumLoading = () => (
+  <Text style={[styles.text, styles.albumLoading]}>Loading...</Text>
+);
 
 // const { width } = Dimensions.get("window");
 // const albumWidth = width * 0.5 - 2;
@@ -46,14 +48,8 @@ export const { albumsContainer, ...styles } = StyleSheet.create({
     marginVertical: 3,
     width: "100%"
   },
-  albumCardContainer: {
-    // height: albumWidth,
-    padding: 2
-    // width: albumWidth
-  },
-  albumTitleContainer: {
-    backgroundColor: colors.red + 50
-  },
+  albumCardContainer: { padding: 2 },
+  albumTitleContainer: { backgroundColor: colors.red + 50 },
 
   // elements
   albumCard: { flex: 1 },
@@ -64,10 +60,11 @@ export const { albumsContainer, ...styles } = StyleSheet.create({
   },
   albumImage: {
     top: 0,
-    height: undefined,
     flex: 1,
+    height: undefined,
     width: undefined
   },
+  albumLoading: { fontSize: 14, padding: 16 },
 
   // utils
   text: { color: colors.white }
