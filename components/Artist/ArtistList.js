@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { ListView, TouchableOpacity } from "react-native";
-import Card from "./Card";
-import { CardLoading } from "./card-styles";
+import Artist from "./Artist";
+import { ArtistLoading } from "./artist-styles";
 
-export default class CardList extends Component {
+export default class ArtistList extends Component {
   constructor(props) {
     super(props);
 
@@ -35,7 +35,7 @@ export default class CardList extends Component {
     const isLoading =
       !list._dataBlob || !list._dataBlob.s1 || !list._dataBlob.s1.length;
 
-    if (isLoading) return <CardLoading />;
+    if (isLoading) return <ArtistLoading />;
 
     return (
       <ListView
@@ -43,7 +43,7 @@ export default class CardList extends Component {
         dataSource={list}
         renderRow={artist => (
           <TouchableOpacity onPress={() => openDetail(artist)}>
-            <Card {...artist} />
+            <Artist {...artist} />
           </TouchableOpacity>
         )}
       />

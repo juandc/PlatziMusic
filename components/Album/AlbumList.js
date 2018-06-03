@@ -39,8 +39,6 @@ export default class AlbumList extends Component {
     if (isLoading) return <AlbumLoading />;
 
     return (
-      // <DimensionsHelper>
-      //  {device => (
       <ListView
         enableEmptySections
         dataSource={list}
@@ -51,8 +49,6 @@ export default class AlbumList extends Component {
         )}
         contentContainerStyle={albumsContainer}
       />
-      //   )}
-      // </DimensionsHelper>
     );
   }
 }

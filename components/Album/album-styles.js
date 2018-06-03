@@ -2,7 +2,6 @@ import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import { colors } from "../../styles/common";
 
-// Components
 export const AlbumCard = props => (
   <View
     style={[
@@ -36,10 +35,6 @@ export const AlbumLoading = () => (
   <Text style={[styles.text, styles.albumLoading]}>Loading...</Text>
 );
 
-// const { width } = Dimensions.get("window");
-// const albumWidth = width * 0.5 - 2;
-
-// Styles
 export const { albumsContainer, ...styles } = StyleSheet.create({
   albumsContainer: {
     flexWrap: "wrap",

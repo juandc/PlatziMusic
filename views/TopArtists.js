@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/Layout";
-import CardList from "../components/Card/CardList";
+import ArtistList from "../components/Artist/ArtistList";
 import { topArtists } from "../utils/api-client";
 
 export default class TopArtists extends React.Component {
@@ -19,7 +19,7 @@ export default class TopArtists extends React.Component {
 
     return (
       <Layout>
-        <CardList
+        <ArtistList
           list={this.state.artists}
           openDetail={artist => navigation.navigate("Albums", { artist })}
         />

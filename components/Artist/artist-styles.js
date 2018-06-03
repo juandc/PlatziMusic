@@ -2,45 +2,47 @@ import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import { colors } from "../../styles/common";
 
-export const CardContainer = props => (
-  <View style={styles.cardContainer} {...props} />
+export const ArtistContainer = props => (
+  <View style={styles.artistContainer} {...props} />
 );
 
-export const CardDescription = props => (
+export const ArtistDescription = props => (
   <View style={styles.descriptionContainer} {...props} />
 );
 
-export const CardActions = props => (
+export const ArtistActions = props => (
   <View style={styles.actionsContainer} {...props} />
 );
 
-export const CardAction = props => (
+export const ArtistAction = props => (
   <View style={styles.actionContainer} {...props} />
 );
 
-export const CardPointer = props => (
+export const ArtistPointer = props => (
   <View style={styles.pointerContainer} {...props} />
 );
 
-export const CardImage = props => <Image style={styles.cardImage} {...props} />;
-
-export const CardTitle = props => (
-  <Text style={[styles.text, styles.cardTitle]} {...props} />
+export const ArtistImage = props => (
+  <Image style={styles.artistImage} {...props} />
 );
 
-export const CardActionCount = ({ count, ...props }) => (
-  <Text style={[styles.text, styles.cardCount]} children={count} {...props} />
+export const ArtistTitle = props => (
+  <Text style={[styles.text, styles.artistTitle]} {...props} />
 );
 
-export const CardLoading = () => (
-  <CardContainer>
+export const ArtistActionCount = ({ count, ...props }) => (
+  <Text style={[styles.text, styles.artistCount]} children={count} {...props} />
+);
+
+export const ArtistLoading = () => (
+  <ArtistContainer>
     <Text style={[styles.text]}>Loading...</Text>
-  </CardContainer>
+  </ArtistContainer>
 );
 
 const styles = StyleSheet.create({
   // containers
-  cardContainer: {
+  artistContainer: {
     flexDirection: "row",
     padding: 16
   },
@@ -69,13 +71,13 @@ const styles = StyleSheet.create({
   },
 
   // elements
-  cardImage: {
+  artistImage: {
     borderRadius: 1,
     height: 56,
     width: 56
   },
-  cardTitle: { fontSize: 18, lineHeight: 22 },
-  cardCount: { fontSize: 10, opacity: 0.75 },
+  artistTitle: { fontSize: 18, lineHeight: 22 },
+  artistCount: { fontSize: 10, opacity: 0.75 },
 
   // utils
   text: { color: colors.white }

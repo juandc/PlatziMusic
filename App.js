@@ -1,9 +1,5 @@
 import React from "react";
-// import { DeviceProvider } from "./utils/device";
+// ...providers ... ... ...
 import { Router } from "./views";
 
-export default class App extends React.Component {
-  render() {
-    return <Router />;
-  }
-}
+export default props => <Router {...props} />;
