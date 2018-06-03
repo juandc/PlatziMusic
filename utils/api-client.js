@@ -24,8 +24,8 @@ export const albumsFromArtist = artist =>
 
       artists.map(artist => {
         const isEmpty =
-          artist == undefined ||
-          artist == null ||
+          !artist ||
+          !artist.mbid ||
           artist.name == "(null)" ||
           artist.name.length <= 3 ||
           artist.image == "(null)" ||
