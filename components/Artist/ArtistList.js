@@ -32,6 +32,7 @@ export default class ArtistList extends Component {
     const { openDetail } = this.props;
     const { list } = this.state;
 
+    // TODO: `isLoading` is universal for `ListView`, should be a helper
     const isLoading =
       !list._dataBlob || !list._dataBlob.s1 || !list._dataBlob.s1.length;
 

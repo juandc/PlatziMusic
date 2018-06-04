@@ -19,8 +19,6 @@ export default class DimensionsHelper extends React.Component {
   };
 
   render() {
-    console.log(this.state.orientation);
-
     return this.props.children(this.state);
   }
 }
@@ -35,7 +33,9 @@ function updateDimensions({ screen }) {
 }
 
 function deviceDimensions({ height, width }) {
-  const orientation = height >= width ? "portrait" : "landscape";
+  const isPortrait = height >= width;
+  const isLandscape = !isPortrait;
+  const orientation = isPortrait ? "portrait" : "landscape";
 
-  return { orientation, height, width };
+  return { isPortrait, isLandscape, orientation, height, width };
 }

@@ -2,29 +2,19 @@ import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import { colors } from "../../styles/common";
 
-export const AlbumCard = props => (
-  <View
-    style={[
-      styles.albumCardContainer,
-      (() => {
-        const widthLogic = props.orientation === "portrait" ? 0.5 : 0.31;
-        const width = props.width * widthLogic - 2;
-        console.log(props.width, width);
-        return {
-          height: width,
-          width
-        };
-      })()
-    ]}
-  >
-    <View style={styles.albumCard} {...props} />
-  </View>
-);
+export const AlbumCard = props => {
+  const widthLogic = props.isPortrait ? 0.5 : 0.31;
+  const width = props.width * widthLogic - 2;
+
+  return (
+    <View style={[styles.albumCardContainer, { height: width, width }]}>
+      <View style={styles.albumCard} {...props} />
+    </View>
+  );
+};
 
 export const AlbumTitle = ({ name }) => (
-  <View styles={styles.albumTitleContainer}>
-    <Text style={[styles.text, styles.albumTitle]}>{name}</Text>
-  </View>
+  <Text style={[styles.text, styles.albumTitle]}>{name}</Text>
 );
 
 export const AlbumImage = ({ image }) => (
@@ -35,7 +25,7 @@ export const AlbumLoading = () => (
   <Text style={[styles.text, styles.albumLoading]}>Loading...</Text>
 );
 
-export const { albumsContainer, ...styles } = StyleSheet.create({
+const styles = StyleSheet.create({
   albumsContainer: {
     flexWrap: "wrap",
     flexDirection: "row",
@@ -44,7 +34,6 @@ export const { albumsContainer, ...styles } = StyleSheet.create({
     width: "100%"
   },
   albumCardContainer: { padding: 2 },
-  albumTitleContainer: { backgroundColor: colors.red + 50 },
 
   // elements
   albumCard: { flex: 1 },
@@ -64,3 +53,5 @@ export const { albumsContainer, ...styles } = StyleSheet.create({
   // utils
   text: { color: colors.white }
 });
+
+export const { albumsContainer } = styles;

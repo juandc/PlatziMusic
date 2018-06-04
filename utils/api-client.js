@@ -1,6 +1,7 @@
 const url = params =>
   `https://ws.audioscrobbler.com/2.0/?api_key=e5f95ee46580f32ab850e3cbfddec906&format=json${params}`;
 
+// TODO: Make country selectable by the user
 export const topArtists = ({ country = "colombia" } = {}) =>
   fetch(url("&method=geo.gettopartists&country=" + country))
     .then(res => res.json())
@@ -23,6 +24,7 @@ export const albumsFromArtist = artist =>
       const filteredList = [];
 
       artists.map(artist => {
+        // TODO: This sh*t should be a helper D:
         const isEmpty =
           !artist ||
           !artist.mbid ||

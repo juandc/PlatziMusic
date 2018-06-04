@@ -1,13 +1,9 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
-import Navbar from "./Navbar";
 import { colors } from "../styles/common";
 
-export default ({ children }) => <View style={styles.layout}>{children}</View>;
+export default props => <View style={styles.layout} {...props} />;
 
 const styles = StyleSheet.create({
-  layout: {
-    backgroundColor: colors.black,
-    flex: 1
-  }
+  layout: { backgroundColor: colors.black, flex: 1 }
 });

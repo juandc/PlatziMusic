@@ -7,9 +7,7 @@ import { colors } from "../styles/common";
 export default class Albums extends React.Component {
   static navigationOptions = {
     title: "Albums",
-    headerStyle: {
-      backgroundColor: colors.black
-    }
+    headerStyle: { backgroundColor: colors.black }
   };
 
   state = { albums: [] };
