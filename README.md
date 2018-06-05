@@ -4,8 +4,8 @@
 
 ## Preview
 
-<img src="https://github.com/juandc/PlatziMusic/blob/master/preview.png" width="500" />
-<img src="https://github.com/juandc/PlatziMusic/blob/master/preview2.png" width="500" />
+<img src="https://github.com/juandc/PlatziMusic/blob/master/.assets/browse.jpg" />
+<img src="https://github.com/juandc/PlatziMusic/blob/master/.assets/browse-with-actions.jpg" />
 
 ## TODOS
 
