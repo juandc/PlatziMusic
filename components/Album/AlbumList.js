@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { ListView, TouchableOpacity } from "react-native";
-import Layout from "../Layout";
 import Album from "./Album";
 import { AlbumLoading, albumsContainer } from "./album-styles";
 
@@ -19,8 +18,8 @@ export default class AlbumList extends Component {
     this.updateList(this.props.list);
   }
 
-  componentWillReceiveProps({ list }) {
-    if (this.props.list !== list) this.updateList(list);
+  componentWillReceiveProps({ list: newList }) {
+    if (this.props.list !== newList) this.updateList(newList);
   }
 
   updateList = data => {

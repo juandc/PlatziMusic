@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../components/Layout";
 import ArtistList from "../components/Artist/ArtistList";
-import { topArtists } from "../utils/api-client";
+import { topArtistsDeprecated } from "../utils/api-client";
 
 export default class TopArtists extends React.Component {
   static navigationOptions = {
@@ -11,7 +11,7 @@ export default class TopArtists extends React.Component {
   state = { artists: [] };
 
   componentDidMount() {
-    topArtists().then(artists => this.setState({ artists }));
+    topArtistsDeprecated().then(artists => this.setState({ artists }));
   }
 
   render() {

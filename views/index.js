@@ -1,11 +1,9 @@
 import { createStackNavigator } from "react-navigation";
-import TopArtists from "./TopArtists";
-import Albums from "./Albums";
+import Browse from "./Browse";
 import { colors } from "../styles/common";
 
 const routes = {
-  TopArtists,
-  Albums
+  Browse
 };
 
 const navConfig = {
@@ -15,6 +13,6 @@ const navConfig = {
 };
 
 export const Router = createStackNavigator(routes, {
-  initialRouteName: "TopArtists",
+  initialRouteName: "Browse",
   navigationOptions: navConfig
 });
