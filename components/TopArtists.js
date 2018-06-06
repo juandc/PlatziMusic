@@ -28,18 +28,8 @@ export default class TopArtists extends React.Component {
           fallback={<ArtistLoading />}
           horizontal={true}
           contentContainerStyle={styles.topArtistsContainer}
-        >
-          {CoolArtist}
-        </List>
-        {/* <Text>Top Tracks</Text>
-        <List
-          list={list}
-          fallback={<ArtistLoading />}
-          horizontal={true}
-          contentContainerStyle={styles.topArtistsContainer}
-        >
-          {CoolArtist}
-        </List> */}
+          render={CoolArtist}
+        />
       </React.Fragment>
     );
   }
