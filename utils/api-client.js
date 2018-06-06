@@ -1,8 +1,11 @@
 const url = e =>
   `https://ws.audioscrobbler.com/2.0/?api_key=e5f95ee46580f32ab850e3cbfddec906&format=json${e}`;
 
-export async function getTopArtists() {
-  const res = await fetch(url("&method=chart.gettopartists"));
+export async function getTopArtists(params) {
+  const { limit = 50 } = params || {};
+
+  const uri = `&method=chart.gettopartists&limit=${limit}`;
+  const res = await fetch(url(uri));
   const data = await res.json();
 
   return data.artists.artist.map(artist => ({

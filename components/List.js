@@ -26,7 +26,7 @@ export default class List extends React.Component {
   };
 
   render() {
-    const { children, fallback } = this.props;
+    const { children, fallback, ...props } = this.props;
     const { list } = this.state;
 
     if (isListLoading(list)) return fallback;
@@ -35,7 +35,8 @@ export default class List extends React.Component {
       <ListView
         enableEmptySections
         dataSource={list}
-        renderRow={children} // `renderRow` returns a function, so children is a render prop
+        renderRow={children} // `renderRow` returns a function, so children is a render prop 🎉
+        {...props}
       />
     );
   }
