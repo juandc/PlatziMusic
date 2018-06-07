@@ -10,7 +10,6 @@ export default class Browse extends React.Component {
       <Layout>
         <TopArtists />
         <TopArtists />
-        {/* Top Tracks */}
       </Layout>
     );
   }

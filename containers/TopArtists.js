@@ -1,7 +1,7 @@
 import React from "react";
 import { Text } from "react-native";
 import List from "../components/List";
-import { CoolArtist, ArtistLoading, styles } from "../components/Artist";
+import { CoolArtist, CoolArtistLoading, styles } from "../components/Artist";
 import * as api from "../utils/api-client";
 
 export default class TopArtists extends React.Component {
@@ -27,7 +27,7 @@ export default class TopArtists extends React.Component {
           list={list}
           horizontal={true}
           render={CoolArtist}
-          fallback={<ArtistLoading />}
+          fallback={<CoolArtistLoading />}
           contentContainerStyle={styles.topArtistsContainer}
         />
       </React.Fragment>
