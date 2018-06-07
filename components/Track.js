@@ -2,8 +2,8 @@ import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import { colors } from "../styles/common";
 
-export const CoolTrack = ({ name, artist }) => (
-  <View style={styles.coolContainer}>
+export const CoolTrack = ({ id, name, artist }) => (
+  <View key={id} style={styles.coolContainer}>
     <Text style={[styles.text]}>{name}</Text>
     <Text style={[styles.text]}>{artist}</Text>
   </View>
