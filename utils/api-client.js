@@ -15,6 +15,20 @@ export async function getTopArtists(params) {
   }));
 }
 
+export async function getTopTracks(params) {
+  const { limit = 50 } = params || {};
+
+  const uri = `&method=chart.gettoptracks&limit=${limit}`;
+  const res = await fetch(url(uri));
+  const data = await res.json();
+
+  return data.tracks.track.map(track => ({
+    id: track.name, // `mbid` is always "" 🤔
+    name: track.name,
+    artist: track.artist.name
+  }));
+}
+
 // !DEPRECATED: Use getTopArtists instead
 export const topArtistsDeprecated = ({ country = "colombia" } = {}) =>
   fetch(url("&method=geo.gettopartists&country=" + country))
