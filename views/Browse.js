@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/Layout";
-import TopArtists from "../components/TopArtists";
+import TopArtists from "../containers/TopArtists";
 
 export default class Browse extends React.Component {
   static navigationOptions = { title: "Browse" };
