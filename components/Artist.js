@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image } from "react-native";
 import { colors } from "../styles/common";
 
 export const CoolArtist = ({ name, image }) => (
-  <View style={styles.coolContainer}>
+  <View key={name} style={styles.coolContainer}>
     <Image source={{ uri: image }} style={styles.coolImage} />
 
     <View style={styles.coolTextContainer}>

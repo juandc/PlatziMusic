@@ -23,14 +23,12 @@ export default class TopTracks extends React.Component {
     return (
       <React.Fragment>
         <Text style={{ color: "#fafafa50" }}>Top Tracks</Text>
-        <View style={styles.topTracksContainer}>{list.map(CoolTrack)}</View>
-        {/* // ! LIST MUST BE FIXED! */}
-        {/* <List
+        <List
           list={list}
           render={CoolTrack}
           fallback={<CoolTrackLoading />}
           contentContainerStyle={styles.topTracksContainer}
-        /> */}
+        />
         {/* // TODO: This should be a button */}
         <Text
           style={{

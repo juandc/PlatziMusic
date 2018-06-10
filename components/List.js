@@ -1,17 +1,31 @@
 import React from "react";
-import { ListView, TouchableOpacity } from "react-native";
-import { isListLoading } from "../utils/global-helpers";
+import { ScrollView, ListView, TouchableOpacity } from "react-native";
+import {
+  isListLoading,
+  isPerformantListLoading
+} from "../utils/global-helpers";
 
-export default class List extends React.Component {
-  // In "mounting" list is empty, so app is loading. Then
-  // `componentDidMount` updates the `ListView` "dataSource"
-  // and app renders the real content.
+export default function scrollPerformance(props) {
+  const newProps = {
+    ...props,
+    renderRow: props.render || props.children
+  };
 
-  // The `componentWillReceiveProps` method is there
-  // just in case the wrapper component provides a pagination
-  // method or something like that 😉.
+  if (!props.withPerformance) {
+    if (isListLoading(props.list)) return props.fallback;
+    return <SimpleList {...newProps} />;
+  }
 
-  state = { list: dataSource };
+  if (isPerformantListLoading(props.list)) return props.fallback;
+  return <PerformantList {...newProps} />;
+}
+
+function SimpleList({ list, renderRow, ...props }) {
+  return <ScrollView {...props}>{list.map(renderRow)}</ScrollView>;
+}
+
+class PerformantList extends React.Component {
+  state = { dataSource };
 
   componentDidMount() {
     this.updateList(this.props.list);
@@ -26,16 +40,13 @@ export default class List extends React.Component {
   };
 
   render() {
-    const { render, children, fallback, ...props } = this.props;
-    const { list } = this.state;
-    const renderRow = render || children;
-
-    if (isListLoading(list)) return fallback;
+    const { renderRow, ...props } = this.children;
+    const { dataSource } = this.state;
 
     return (
       <ListView
         enableEmptySections
-        dataSource={list}
+        dataSource={dataSource}
         renderRow={renderRow} // `renderRow` returns a function, so children is a render prop 🎉
         {...props}
       />
@@ -43,7 +54,7 @@ export default class List extends React.Component {
   }
 }
 
-// Helpers
+// PerformantList Helpers
 function updateList(list) {
   return function updateState(state, props) {
     return {
