@@ -18,6 +18,7 @@ export default class TopArtists extends React.Component {
 
   render() {
     const { artists: list } = this.state;
+    // TODO: This could come from Artist
     const viewmore = {
       id: "VIEW_MORE_ARTISTS",
       name: "View more...",
@@ -31,7 +32,7 @@ export default class TopArtists extends React.Component {
           list={list}
           horizontal={true}
           render={CoolArtist}
-          aditionalItem={viewmore}
+          additionalItem={viewmore}
           fallback={<CoolArtistLoading />}
           contentContainerStyle={styles.topArtistsContainer}
         />

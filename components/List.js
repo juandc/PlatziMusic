@@ -1,9 +1,6 @@
 import React from "react";
 import { ScrollView, ListView, TouchableOpacity, Text } from "react-native";
-import {
-  isListLoading,
-  isPerformantListLoading
-} from "../utils/global-helpers";
+import { isListLoading, isDataSourceLoading } from "../utils/global-helpers";
 
 export default function scrollPerformance(props) {
   // This component decides the render method. If
@@ -16,10 +13,7 @@ export default function scrollPerformance(props) {
     // Props
     ...props,
     // New Props
-    renderRow: props.render || props.children,
-    list: props.aditionalItem
-      ? [...props.list, props.aditionalItem]
-      : props.list
+    renderRow: props.render || props.children
   };
 
   if (!props.withPerformance) {
@@ -27,7 +21,6 @@ export default function scrollPerformance(props) {
     return <SimpleList {...newProps} />;
   }
 
-  if (isPerformantListLoading(props.list)) return newProps.fallback;
   return <PerformantList {...newProps} />;
 }
 
@@ -52,7 +45,10 @@ class PerformantList extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    this.props.list !== newProps.list && this.updateList(newProps.list);
+    // TODO: "withAdditionalItem" is just working for
+    // the first time "componentWillReceiveProps" is call...
+    this.props.list !== newProps.list &&
+      this.updateList(withAdditionalItem(newProps.list, this.props));
   }
 
   updateList = list => {
@@ -61,26 +57,33 @@ class PerformantList extends React.Component {
 
   render() {
     const { dataSource } = this.state;
-    const { renderRow, ...props } = this.props;
+    const { renderRow, fallback, ...props } = this.props;
+
+    if (isDataSourceLoading(dataSource)) return fallback;
 
     return (
       <ListView
         enableEmptySections
         {...props}
         dataSource={dataSource}
-        // The `renderRow` prop returns a function,
-        // so children and render are render props... 🎉
         renderRow={renderRow}
+        // ^^^ The `renderRow` prop returns a function,
+        // so children and render are render props... 🎉
       />
     );
   }
 }
 
 // PerformantList Helpers
+function withAdditionalItem(list, props) {
+  if (props.additionalItem) return [...list, props.additionalItem];
+  return list;
+}
+
 function updateList(list) {
   return function updateState(state, props) {
     return {
-      list: state.list.cloneWithRows(list)
+      dataSource: state.dataSource.cloneWithRows(list)
     };
   };
 }
