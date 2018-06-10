@@ -4,7 +4,7 @@ import { colors } from "../styles/common";
 
 export const CoolArtist = ({ name, image }) => (
   <View key={name} style={styles.coolContainer}>
-    <Image source={{ uri: image }} style={styles.coolImage} />
+    <Image source={image} style={styles.coolImage} />
 
     <View style={styles.coolTextContainer}>
       <Text style={[styles.text, styles.coolText]}>{name}</Text>

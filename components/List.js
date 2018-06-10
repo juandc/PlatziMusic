@@ -16,7 +16,10 @@ export default function scrollPerformance(props) {
     // Props
     ...props,
     // New Props
-    renderRow: props.render || props.children
+    renderRow: props.render || props.children,
+    list: props.aditionalItem
+      ? [...props.list, props.aditionalItem]
+      : props.list
   };
 
   if (!props.withPerformance) {
@@ -57,8 +60,8 @@ class PerformantList extends React.Component {
   };
 
   render() {
-    const { renderRow, ...props } = this.props;
     const { dataSource } = this.state;
+    const { renderRow, ...props } = this.props;
 
     return (
       <ListView

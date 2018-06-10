@@ -17,8 +17,12 @@ export default class TopArtists extends React.Component {
   };
 
   render() {
-    const { artists } = this.state;
-    const list = [...artists];
+    const { artists: list } = this.state;
+    const viewmore = {
+      id: "VIEW_MORE_ARTISTS",
+      name: "View more...",
+      image: require("../public/view_more_artists.png")
+    };
 
     return (
       <React.Fragment>
@@ -27,6 +31,7 @@ export default class TopArtists extends React.Component {
           list={list}
           horizontal={true}
           render={CoolArtist}
+          aditionalItem={viewmore}
           fallback={<CoolArtistLoading />}
           contentContainerStyle={styles.topArtistsContainer}
         />

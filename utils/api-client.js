@@ -1,5 +1,5 @@
-const url = e =>
-  `https://ws.audioscrobbler.com/2.0/?api_key=e5f95ee46580f32ab850e3cbfddec906&format=json${e}`;
+const url = stuff =>
+  `https://ws.audioscrobbler.com/2.0/?api_key=e5f95ee46580f32ab850e3cbfddec906&format=json${stuff}`;
 
 export async function getTopArtists(params) {
   const { limit = 50 } = params || {};
@@ -11,7 +11,7 @@ export async function getTopArtists(params) {
   return data.artists.artist.map(artist => ({
     id: artist.mbid,
     name: artist.name,
-    image: artist.image[3]["#text"]
+    image: { uri: artist.image[3]["#text"] }
   }));
 }
 
@@ -23,26 +23,11 @@ export async function getTopTracks(params) {
   const data = await res.json();
 
   return data.tracks.track.map(track => ({
-    id: track.name, // `mbid` is always "" 🤔
+    id: track.name, // `mbid` is always an empty array ("") 🤔
     name: track.name,
     artist: track.artist.name
   }));
 }
-
-// !DEPRECATED: Use getTopArtists instead
-export const topArtistsDeprecated = ({ country = "colombia" } = {}) =>
-  fetch(url("&method=geo.gettopartists&country=" + country))
-    .then(res => res.json())
-    .then(data => data.topartists.artist) // yes, in singular...
-    .then(artists =>
-      artists.map(artist => ({
-        id: artist.mbid,
-        name: artist.name,
-        image: artist.image[2]["#text"],
-        likes: 200,
-        comments: 6
-      }))
-    );
 
 // TODO: Use helpers
 export const albumsFromArtist = artist =>
