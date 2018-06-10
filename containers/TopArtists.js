@@ -1,7 +1,12 @@
 import React from "react";
 import { Text } from "react-native";
 import List from "../components/List";
-import { CoolArtist, CoolArtistLoading, styles } from "../components/Artist";
+import {
+  CoolArtist,
+  CoolArtistLoading,
+  VIEW_MORE,
+  styles
+} from "../components/Artist";
 import * as api from "../utils/api-client";
 
 export default class TopArtists extends React.Component {
@@ -18,12 +23,6 @@ export default class TopArtists extends React.Component {
 
   render() {
     const { artists: list } = this.state;
-    // TODO: This could come from Artist
-    const viewmore = {
-      id: "VIEW_MORE_ARTISTS",
-      name: "View more...",
-      image: require("../public/view_more_artists.png")
-    };
 
     return (
       <React.Fragment>
@@ -32,7 +31,7 @@ export default class TopArtists extends React.Component {
           list={list}
           horizontal={true}
           render={CoolArtist}
-          additionalItem={viewmore}
+          additionalItem={VIEW_MORE}
           fallback={<CoolArtistLoading />}
           contentContainerStyle={styles.topArtistsContainer}
         />

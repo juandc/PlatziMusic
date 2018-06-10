@@ -26,6 +26,13 @@ export const CoolArtistLoading = () => (
   </View>
 );
 
+// Component for the Top List
+export const VIEW_MORE = {
+  id: "VIEW_MORE_ARTISTS",
+  name: "View more...",
+  image: require("../public/view_more_artists.png")
+};
+
 // This is a bit longer than my suposted D:
 export const styles = StyleSheet.create({
   // parent containers

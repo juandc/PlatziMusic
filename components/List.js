@@ -24,9 +24,11 @@ export default function scrollPerformance(props) {
   return <PerformantList {...newProps} />;
 }
 
-// A simple wrapper, problems with performance.
+// A simple wrapper, with terrible performance.
 const SimpleList = ({ list, renderRow, ...props }) => (
-  <ScrollView {...props}>{list.map(renderRow)}</ScrollView>
+  <ScrollView {...props}>
+    {withAdditionalItem(list, props).map(renderRow)}
+  </ScrollView>
 );
 
 // A complicated wrapper with excelent performance 😎.
@@ -46,7 +48,7 @@ class PerformantList extends React.Component {
 
   componentWillReceiveProps(newProps) {
     // TODO: "withAdditionalItem" is just working for
-    // the first time "componentWillReceiveProps" is call...
+    // the first time "componentWillReceiveProps" call...
     this.props.list !== newProps.list &&
       this.updateList(withAdditionalItem(newProps.list, this.props));
   }
@@ -75,11 +77,6 @@ class PerformantList extends React.Component {
 }
 
 // PerformantList Helpers
-function withAdditionalItem(list, props) {
-  if (props.additionalItem) return [...list, props.additionalItem];
-  return list;
-}
-
 function updateList(list) {
   return function updateState(state, props) {
     return {
@@ -91,3 +88,9 @@ function updateList(list) {
 const dataSource = new ListView.DataSource({
   rowHasChanged: (r1, r2) => r1 !== r2 // obligatory, see https://facebook.github.io/react-native/docs/listview.html
 });
+
+// Shared Helpers
+function withAdditionalItem(list, props) {
+  if (props.additionalItem) return [...list, props.additionalItem];
+  return list;
+}
