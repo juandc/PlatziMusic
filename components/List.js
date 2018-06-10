@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, ListView, TouchableOpacity } from "react-native";
+import { ScrollView, ListView, TouchableOpacity, Text } from "react-native";
 import {
   isListLoading,
   isPerformantListLoading
@@ -7,12 +7,15 @@ import {
 
 export default function scrollPerformance(props) {
   const newProps = {
+    // must replace props
+    fallback: <Text style={{ color: "#F5F5F5" }}>loading...</Text>,
     ...props,
+    // no replacing props
     renderRow: props.render || props.children
   };
 
   if (!props.withPerformance) {
-    if (isListLoading(props.list)) return props.fallback;
+    if (isListLoading(props.list)) return newProps.fallback;
     return <SimpleList {...newProps} />;
   }
 
