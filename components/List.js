@@ -6,11 +6,16 @@ import {
 } from "../utils/global-helpers";
 
 export default function scrollPerformance(props) {
+  // This component decides the render method. If
+  // `withPerformance` key is "true" is gonna render
+  // the `PerformantList` component, using the "ListView"
+  // native wrapper. Else is using the "ScrollView".
   const newProps = {
-    // must replace props
+    // Default Props
     fallback: <Text style={{ color: "#F5F5F5" }}>loading...</Text>,
+    // Props
     ...props,
-    // no replacing props
+    // New Props
     renderRow: props.render || props.children
   };
 
@@ -19,23 +24,32 @@ export default function scrollPerformance(props) {
     return <SimpleList {...newProps} />;
   }
 
-  if (isPerformantListLoading(props.list)) return props.fallback;
+  if (isPerformantListLoading(props.list)) return newProps.fallback;
   return <PerformantList {...newProps} />;
 }
 
-function SimpleList({ list, renderRow, ...props }) {
-  return <ScrollView {...props}>{list.map(renderRow)}</ScrollView>;
-}
+// A simple wrapper, problems with performance.
+const SimpleList = ({ list, renderRow, ...props }) => (
+  <ScrollView {...props}>{list.map(renderRow)}</ScrollView>
+);
 
+// A complicated wrapper with excelent performance 😎.
 class PerformantList extends React.Component {
+  // In "mounting" list is empty, so app is loading. Then
+  // `componentDidMount` updates the `ListView` "dataSource"
+  // and app renders the real content.
+
+  // The `componentWillReceiveProps` method is there
+  // just in case the wrapper component provides a pagination
+  // method or something like that 😉.
   state = { dataSource };
 
   componentDidMount() {
     this.updateList(this.props.list);
   }
 
-  componentWillReceiveProps({ list }) {
-    this.props.list !== list && this.updateList(list);
+  componentWillReceiveProps(newProps) {
+    this.props.list !== newProps.list && this.updateList(newProps.list);
   }
 
   updateList = list => {
@@ -43,15 +57,17 @@ class PerformantList extends React.Component {
   };
 
   render() {
-    const { renderRow, ...props } = this.children;
+    const { renderRow, ...props } = this.props;
     const { dataSource } = this.state;
 
     return (
       <ListView
         enableEmptySections
-        dataSource={dataSource}
-        renderRow={renderRow} // `renderRow` returns a function, so children is a render prop 🎉
         {...props}
+        dataSource={dataSource}
+        // The `renderRow` prop returns a function,
+        // so children and render are render props... 🎉
+        renderRow={renderRow}
       />
     );
   }
@@ -67,5 +83,5 @@ function updateList(list) {
 }
 
 const dataSource = new ListView.DataSource({
-  rowHasChanged: (r1, r2) => r1 !== r2
+  rowHasChanged: (r1, r2) => r1 !== r2 // obligatory, see https://facebook.github.io/react-native/docs/listview.html
 });

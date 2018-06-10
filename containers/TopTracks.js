@@ -31,11 +31,7 @@ export default class TopTracks extends React.Component {
         />
         {/* // TODO: This should be a button */}
         <Text
-          style={{
-            color: "#cc2222",
-            textAlign: "right",
-            marginBottom: 32
-          }}
+          style={{ color: "#cc2222", textAlign: "right", marginBottom: 32 }}
         >
           View more
         </Text>
