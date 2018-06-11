@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { Text } from "react-native";
 import List from "../components/List";
+import Button from "../components/Button";
 import { CoolTrack, CoolTrackLoading, styles } from "../components/Track";
 import * as api from "../utils/api-client";
 
@@ -29,12 +30,12 @@ export default class TopTracks extends React.Component {
           fallback={<CoolTrackLoading />}
           contentContainerStyle={styles.topTracksContainer}
         />
-        {/* // TODO: This should be a button */}
-        <Text
-          style={{ color: "#cc2222", textAlign: "right", marginBottom: 32 }}
-        >
-          View more
-        </Text>
+        <Button
+          align="right"
+          bgColor="#00000000"
+          text="View more"
+          buttonStyles={{ container: { marginTop: -8, marginBottom: 32 } }}
+        />
       </React.Fragment>
     );
   }
