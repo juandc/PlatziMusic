@@ -30,7 +30,7 @@ export const CoolArtistLoading = () => (
 export const VIEW_MORE = {
   id: "VIEW_MORE_ARTISTS",
   name: "View more...",
-  image: require("../public/view_more_artists.png")
+  image: require("../public/img/view_more_artists.png")
 };
 
 // This is a bit longer than my suposted D:
