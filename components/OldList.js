@@ -16,20 +16,21 @@ export default function scrollPerformance(props) {
     renderRow: props.render || props.children
   };
 
-  if (!props.withPerformance) {
-    if (isListLoading(props.list)) return newProps.fallback;
-    return <SimpleList {...newProps} />;
-  }
+  if (!props.withPerformance) return <SimpleList {...newProps} />;
 
   return <PerformantList {...newProps} />;
 }
 
 // A simple wrapper, with terrible performance.
-const SimpleList = ({ list, renderRow, ...props }) => (
-  <ScrollView {...props}>
-    {withAdditionalItem(list, props).map(renderRow)}
-  </ScrollView>
-);
+const SimpleList = ({ list, renderRow, fallback, ...props }) => {
+  if (isListLoading(list)) return fallback;
+
+  return (
+    <ScrollView {...props}>
+      {withAdditionalItem(list, props).map(renderRow)}
+    </ScrollView>
+  );
+};
 
 // A complicated wrapper with excelent performance 😎.
 class PerformantList extends React.Component {
