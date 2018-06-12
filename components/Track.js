@@ -6,6 +6,10 @@ export const CoolTrack = ({ id, name, artist }) => (
   <View key={id} style={styles.coolContainer}>
     <Text style={[styles.text]}>{name}</Text>
     <Text style={[styles.text]}>{artist}</Text>
+    <Image
+      style={[styles.icon]}
+      source={require("../public/img/right-arrow.png")}
+    />
   </View>
 );
 
@@ -36,6 +40,11 @@ export const styles = StyleSheet.create({
   coolContainer: { height: 46, marginBottom: 12 },
 
   // elements
+  icon: {
+    position: "absolute",
+    top: 15,
+    right: 0
+  },
 
   // utils
   text: { color: colors.white }
