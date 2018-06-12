@@ -27,6 +27,7 @@ export default class TopTracks extends React.Component {
         <List
           list={list}
           render={CoolTrack}
+          onPress={id => console.log(id)}
           fallback={<CoolTrackLoading />}
           contentContainerStyle={styles.topTracksContainer}
         />

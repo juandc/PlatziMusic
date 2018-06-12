@@ -1,5 +1,5 @@
 import React from "react";
-import { ListView } from "react-native";
+import { TouchableOpacity, ListView } from "react-native";
 import { withAdditionalItem } from "./list--utils";
 import { isDataSourceLoading } from "../../utils/global-helpers";
 
@@ -31,7 +31,7 @@ export default class PerformantList extends React.Component {
 
   render() {
     const { dataSource } = this.state;
-    const { renderRow, fallback, ...props } = this.props;
+    const { renderRow: Render, fallback, onPress, ...props } = this.props;
 
     if (isDataSourceLoading(dataSource)) return fallback;
 
@@ -40,7 +40,11 @@ export default class PerformantList extends React.Component {
         enableEmptySections
         {...props}
         dataSource={dataSource}
-        renderRow={renderRow}
+        renderRow={item => (
+          <TouchableOpacity key={item.id} onPress={() => onPress(item.id)}>
+            <Render {...item} />
+          </TouchableOpacity>
+        )}
         // ^^^ The `renderRow` prop returns a function,
         // so children and render are render props... 🎉
       />
