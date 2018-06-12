@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image } from "react-native";
 import { colors } from "../styles/common";
 
 export const CoolArtist = ({ name, image }) => (
-  <View key={name} style={styles.coolContainer}>
+  <View style={styles.coolContainer}>
     <Image source={image} style={styles.coolImage} />
 
     <View style={styles.coolTextContainer}>
@@ -28,7 +28,7 @@ export const CoolArtistLoading = () => (
 
 // Component for the Top List
 export const VIEW_MORE = {
-  id: "VIEW_MORE_ARTISTS",
+  key: "VIEW_MORE_ARTISTS",
   name: "View more...",
   image: require("../public/img/view_more_artists.png")
 };
@@ -61,6 +61,7 @@ export const styles = StyleSheet.create({
 
   // elements
   coolImage: {
+    backgroundColor: "#000",
     borderRadius: 8,
     flex: 1,
     height: undefined,

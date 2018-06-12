@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import { colors } from "../styles/common";
 
 export default function Button({
@@ -8,28 +8,31 @@ export default function Button({
   color,
   text,
   buttonStyles,
+  onPress,
   ...props
 }) {
   return (
-    <View
-      style={[
-        styles.container,
-        buttonStyles.container,
-        styles[align],
-        { backgroundColor: colors[bgColor] || bgColor }
-      ]}
-      {...props}
-    >
-      <Text
+    <TouchableOpacity activeOpacity={0.5} onPress={onPress}>
+      <View
         style={[
-          styles.text,
-          buttonStyles.text,
-          { color: colors[color] || color }
+          styles.container,
+          buttonStyles.container,
+          styles[align],
+          { backgroundColor: colors[bgColor] || bgColor }
         ]}
+        {...props}
       >
-        {text}
-      </Text>
-    </View>
+        <Text
+          style={[
+            styles.text,
+            buttonStyles.text,
+            { color: colors[color] || color }
+          ]}
+        >
+          {text}
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 }
 
@@ -38,7 +41,8 @@ Button.defaultProps = {
   bgColor: "white",
   color: "red",
   text: "Button",
-  buttonStyles: { container: {}, text: {} }
+  buttonStyles: { container: {}, text: {} },
+  onPress: () => console.log("button pressed")
 };
 
 const styles = new StyleSheet.create({

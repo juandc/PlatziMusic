@@ -41,7 +41,11 @@ export default class PerformantList extends React.Component {
         {...props}
         dataSource={dataSource}
         renderRow={item => (
-          <TouchableOpacity key={item.id} onPress={() => onPress(item.id)}>
+          <TouchableOpacity
+            key={item.key}
+            onPress={() => onPress(item.key)}
+            activeOpacity={0.5}
+          >
             <Render {...item} />
           </TouchableOpacity>
         )}

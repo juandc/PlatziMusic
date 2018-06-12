@@ -4,16 +4,26 @@ import { withAdditionalItem } from "./list--utils";
 import { isListLoading } from "../../utils/global-helpers";
 
 // A simple wrapper, with terrible performance.
-export default ({ list, renderRow: Render, fallback, onPress, ...props }) => {
+export default function SimpleList({
+  renderRow: Render,
+  list,
+  fallback,
+  onPress,
+  ...props
+}) {
   if (isListLoading(list)) return fallback;
 
   return (
     <ScrollView {...props}>
       {withAdditionalItem(list, props).map(item => (
-        <TouchableOpacity key={item.id} onPress={() => onPress(item.id)}>
+        <TouchableOpacity
+          key={item.key}
+          onPress={() => onPress(item.key)}
+          activeOpacity={0.5}
+        >
           <Render {...item} />
         </TouchableOpacity>
       ))}
     </ScrollView>
   );
-};
+}

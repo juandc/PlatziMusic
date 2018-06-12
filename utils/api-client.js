@@ -9,7 +9,7 @@ export async function getTopArtists(params) {
   const data = await res.json();
 
   return data.artists.artist.map(artist => ({
-    id: artist.mbid,
+    key: artist.mbid,
     name: artist.name,
     image: { uri: artist.image[3]["#text"] }
   }));
@@ -23,7 +23,7 @@ export async function getTopTracks(params) {
   const data = await res.json();
 
   return data.tracks.track.map(track => ({
-    id: track.name, // `mbid` is always an empty array ("") 🤔
+    key: track.name, // `mbid` is always an empty array ("") 🤔
     name: track.name,
     artist: track.artist.name
   }));
