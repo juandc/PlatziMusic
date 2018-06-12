@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
   icon: {
     position: "absolute",
     top: 15,
-    right: 0
+    right: 4
   },
 
   // utils
