@@ -30,8 +30,8 @@ export const CoolArtistLoading = () => (
 export const VIEW_MORE = {
   key: "VIEW_MORE_ARTISTS",
   name: "View more...",
-  image: require("../public/img/view_more_artists.png"),
-  onPress: e => console.log(e.item.name, "custom")
+  image: require("../public/img/view_more_artists.png")
+  // onPress: e => e.navigation.navigate("Artists")
 };
 
 // This is a bit longer than my suposted D:

@@ -1,9 +1,11 @@
 import { createStackNavigator } from "react-navigation";
 import Browse from "./Browse";
+import Albums from "./Albums";
 import { colors } from "../styles/common";
 
 const routes = {
-  Browse
+  Browse,
+  Albums
 };
 
 const navConfig = {

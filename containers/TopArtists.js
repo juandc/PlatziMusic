@@ -7,6 +7,7 @@ import {
   VIEW_MORE,
   styles
 } from "../components/Artist";
+import { NavigationConsumer } from "../utils/navigation";
 import * as api from "../utils/api-client";
 
 export default class TopArtists extends React.Component {
@@ -25,18 +26,24 @@ export default class TopArtists extends React.Component {
     const { artists: list } = this.state;
 
     return (
-      <React.Fragment>
-        <Text style={{ color: "#fafafa50" }}>Top Artists</Text>
-        <List
-          list={list}
-          render={CoolArtist}
-          additionalItem={VIEW_MORE}
-          fallback={<CoolArtistLoading />}
-          onPress={e => console.log(e.item.key)}
-          horizontal={true}
-          contentContainerStyle={styles.topArtistsContainer}
-        />
-      </React.Fragment>
+      <NavigationConsumer>
+        {navigation => (
+          <React.Fragment>
+            <Text style={{ color: "#fafafa50" }}>Top Artists</Text>
+            <List
+              list={list}
+              render={CoolArtist}
+              additionalItem={VIEW_MORE}
+              additionalProps={{ navigation }}
+              fallback={<CoolArtistLoading />}
+              onPress={e => navigation.navigate("Albums", e.item)}
+              contentContainerStyle={styles.topArtistsContainer}
+              withPerformance
+              horizontal
+            />
+          </React.Fragment>
+        )}
+      </NavigationConsumer>
     );
   }
 }

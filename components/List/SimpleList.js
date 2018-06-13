@@ -19,6 +19,7 @@ function renderList(props) {
   const formatItems = oldList.map(item => {
     newList.push({
       item,
+      ...(props.additionalProps || {}),
       onPress: item.onPress || props.onPress,
       renderRow: props.render || props.children
     });

@@ -7,8 +7,10 @@ export default class Browse extends React.Component {
   static navigationOptions = { title: "Browse" };
 
   render() {
+    const { navigation } = this.props;
+
     return (
-      <Layout>
+      <Layout navigation={navigation}>
         <TopArtists />
         <TopTracks />
       </Layout>

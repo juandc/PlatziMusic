@@ -43,8 +43,9 @@ export default class PerformantList extends React.Component {
         dataSource={dataSource}
         renderRow={item => (
           <Render
-            onPress={item.onPress || props.onPress}
             key={`Render-${item.key}`}
+            {...props.additionalProps || {}}
+            onPress={item.onPress || props.onPress}
             renderRow={renderRow}
             item={item}
           />
