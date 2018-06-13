@@ -5,7 +5,6 @@ export default class Browse extends React.Component {
   static navigationOptions = { title: "Albums" };
 
   render() {
-    console.log(this.props.navigation.state);
     return <Layout />;
   }
 }
