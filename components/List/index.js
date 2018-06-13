@@ -1,7 +1,7 @@
 import React from "react";
 import SimpleList from "./SimpleList";
 import PerformantList from "./PerformantList";
-import { defaultProps } from "./list--utils";
+import { Render, defaultProps } from "./list--utils";
 
 export default function List(props) {
   // This component decides the render method. If
@@ -10,8 +10,7 @@ export default function List(props) {
   // native wrapper. Else is using the "ScrollView".
   const newProps = {
     ...defaultProps,
-    ...props,
-    renderRow: props.render || props.children
+    ...props
   };
 
   if (!props.withPerformance) return <SimpleList {...newProps} />;

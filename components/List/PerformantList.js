@@ -1,6 +1,6 @@
 import React from "react";
 import { TouchableOpacity, ListView } from "react-native";
-import { withAdditionalItem } from "./list--utils";
+import { Render } from "./list--utils";
 import { isDataSourceLoading } from "../../utils/global-helpers";
 
 // A complicated wrapper with excelent performance 😎.
@@ -21,8 +21,9 @@ export default class PerformantList extends React.Component {
   componentWillReceiveProps(newProps) {
     // TODO: "withAdditionalItem" is just working for
     // the first time "componentWillReceiveProps" call...
-    this.props.list !== newProps.list &&
-      this.updateList(withAdditionalItem(newProps.list, this.props));
+    if (this.props.list !== newProps.list) {
+      this.updateList([...newProps.list, newProps.additionalItem]);
+    }
   }
 
   updateList = list => {
@@ -31,23 +32,22 @@ export default class PerformantList extends React.Component {
 
   render() {
     const { dataSource } = this.state;
-    const { renderRow: Render, fallback, onPress, ...props } = this.props;
+    const { fallback, render, children, ...props } = this.props;
+    const renderRow = render || children;
 
     if (isDataSourceLoading(dataSource)) return fallback;
 
     return (
       <ListView
-        enableEmptySections
         {...props}
         dataSource={dataSource}
         renderRow={item => (
-          <TouchableOpacity
-            key={item.key}
-            onPress={() => onPress(item.key)}
-            activeOpacity={0.5}
-          >
-            <Render {...item} />
-          </TouchableOpacity>
+          <Render
+            onPress={item.onPress || props.onPress}
+            key={`Render-${item.key}`}
+            renderRow={renderRow}
+            item={item}
+          />
         )}
         // ^^^ The `renderRow` prop returns a function,
         // so children and render are render props... 🎉

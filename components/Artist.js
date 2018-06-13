@@ -2,8 +2,8 @@ import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import { colors } from "../styles/common";
 
-export const CoolArtist = ({ name, image }) => (
-  <View style={styles.coolContainer}>
+export const CoolArtist = ({ name, image, ...props }) => (
+  <View key={`CoolArtist-${props.key}`} style={styles.coolContainer}>
     <Image source={image} style={styles.coolImage} />
 
     <View style={styles.coolTextContainer}>
@@ -30,7 +30,8 @@ export const CoolArtistLoading = () => (
 export const VIEW_MORE = {
   key: "VIEW_MORE_ARTISTS",
   name: "View more...",
-  image: require("../public/img/view_more_artists.png")
+  image: require("../public/img/view_more_artists.png"),
+  onPress: e => console.log(e.item.name, "custom")
 };
 
 // This is a bit longer than my suposted D:
@@ -61,7 +62,6 @@ export const styles = StyleSheet.create({
 
   // elements
   coolImage: {
-    backgroundColor: "#000",
     borderRadius: 8,
     flex: 1,
     height: undefined,

@@ -1,17 +1,23 @@
 import React from "react";
-import { Text } from "react-native";
+import { TouchableOpacity, Text } from "react-native";
 import { colors } from "../../styles/common";
 
 // List utils
 export const defaultProps = {
+  enableEmptySections: true,
   fallback: FallbackText
 };
 
-// Lists utils
-export function withAdditionalItem(list, props) {
-  if (props.additionalItem) return [...list, props.additionalItem];
-  return list;
-}
+// Reusable components
+export const Render = props => (
+  <TouchableOpacity
+    key={`TouchableOpacity-${props.item.key}`}
+    onPress={() => props.onPress(props)}
+    activeOpacity={0.5}
+  >
+    {props.renderRow(props.item)}
+  </TouchableOpacity>
+);
 
 // Helpers (yes, utils for utils)
 const FallbackText = <Text style={{ color: colors.white }}>loading...</Text>;

@@ -29,11 +29,11 @@ export default class TopArtists extends React.Component {
         <Text style={{ color: "#fafafa50" }}>Top Artists</Text>
         <List
           list={list}
-          horizontal={true}
           render={CoolArtist}
           additionalItem={VIEW_MORE}
-          onPress={e => console.log(e)}
           fallback={<CoolArtistLoading />}
+          onPress={e => console.log(e.item.key)}
+          horizontal={true}
           contentContainerStyle={styles.topArtistsContainer}
         />
       </React.Fragment>
